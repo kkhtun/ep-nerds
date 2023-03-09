@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 });
 
 // CRUD routes for tasks
-app.get("/api/tasks", async (req, res) => {
+app.get("/api/tasks", async (req, res, next) => {
     const { error, value } = Joi.object({
         limit: Joi.number().integer().default(50),
         skip: Joi.number().integer().default(0),
@@ -50,7 +50,7 @@ app.get("/api/tasks", async (req, res) => {
     }
 });
 
-app.get("/api/tasks/:id", async (req, res) => {
+app.get("/api/tasks/:id", async (req, res, next) => {
     const { error, value } = Joi.object({
         id: Joi.objectId().required(),
     }).validate(req.params);
@@ -69,7 +69,7 @@ app.get("/api/tasks/:id", async (req, res) => {
     }
 });
 
-app.post("/api/tasks", async (req, res) => {
+app.post("/api/tasks", async (req, res, next) => {
     const { error, value } = Joi.object({
         title: Joi.string().required(),
         isCompleted: Joi.boolean().default(false),
@@ -85,7 +85,7 @@ app.post("/api/tasks", async (req, res) => {
     }
 });
 
-app.patch("/api/tasks/:id", async (req, res) => {
+app.patch("/api/tasks/:id", async (req, res, next) => {
     const { error, value } = Joi.object({
         id: Joi.objectId().required(),
         title: Joi.string(),
@@ -115,7 +115,7 @@ app.patch("/api/tasks/:id", async (req, res) => {
     }
 });
 
-app.delete("/api/tasks/:id", async (req, res) => {
+app.delete("/api/tasks/:id", async (req, res, next) => {
     const { error, value } = Joi.object({
         id: Joi.objectId().required(),
     }).validate(req.params);
