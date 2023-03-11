@@ -1,6 +1,7 @@
 // Lib Imports
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const mongoose = require("mongoose");
 const Joi = require("joi");
 const { ValidationError } = require("joi");
@@ -19,6 +20,7 @@ const connection = mongoose.connect(
 const { ERRORS } = require("./constants");
 
 // express middlewares start here
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
