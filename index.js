@@ -132,7 +132,7 @@ app.delete("/api/tasks/:id", async (req, res, next) => {
 });
 
 // Error handler
-app.use((req, res, next, error) => {
+app.use((error, req, res, next) => {
     if (error instanceof ValidationError) {
         return res
             .status(400)
